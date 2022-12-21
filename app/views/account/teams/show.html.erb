@@ -3,6 +3,7 @@
 
   <% p.content_for :body do %>
     <%= render 'account/locations/index', locations: @team.locations, hide_back: true %>
+    <%= render 'account/people/index', people: @team.people, hide_back: true %>
     <%# 🚅 super scaffolding will insert new children above this line. %>
 
     <% unless scaffolding_things_disabled? %>

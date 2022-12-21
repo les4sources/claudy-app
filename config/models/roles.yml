@@ -1,5 +1,6 @@
 default:
   models:
+    Person: read
     Room: read
     Lodging: read
     Location: read
@@ -31,6 +32,7 @@ admin:
     - admin
     - editor
   models:
+    Person: manage
     Room: manage
     Lodging: manage
     Location: manage

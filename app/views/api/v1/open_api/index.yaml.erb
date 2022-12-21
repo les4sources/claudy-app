@@ -22,6 +22,7 @@ components:
     <%= automatic_components_for Location %>
     <%= automatic_components_for Lodging %>
     <%= automatic_components_for Room %>
+    <%= automatic_components_for Person %>
     <%# 🚅 super scaffolding will insert new components above this line. %>
   parameters:
     id:
@@ -56,4 +57,5 @@ paths:
   <%= automatic_paths_for Location, Team %>
   <%= automatic_paths_for Lodging, Location %>
   <%= automatic_paths_for Room, Location %>
+  <%= automatic_paths_for Person, Team %>
   <%# 🚅 super scaffolding will insert new paths above this line. %>
