@@ -1,0 +1,66 @@
+# Teams
+# - Users
+# -- Memberships (team_id, user_id)
+# - Lodgings
+# - Rooms (lodging_id)
+# - Bookings
+# - Reservations
+
+# Locations
+rails g model Location name:string address:string team:references
+bin/super-scaffold crud Location Team name:text_field address:text_field
+
+# Lodgings
+rails g model Lodging location:references name:string description:text summary:string price_night_cents:integer price_weekend_cents:integer party_hall_availability:boolean
+bin/super-scaffold crud Lodging Location,Team name:text_field description:trix_editor summary:text_field price_night_cents:text_field price_weekend_cents:text_field party_hall_availability:boolean
+
+# Rooms
+rails g model Room location:references name:string description:text level:integer code:string
+bin/super-scaffold crud Room Location,Team name:text_field description:trix_editor level:text_field code:text_field
+
+
+rails g model Booking human:references status:string payment_status:string
+rails g model Reservation booking:references room:references date:date status:string
+
+
+
+rails g model Human firstname:string lastname:string email:string phone:string team:references
+
+rails g model Location name:string address:string collective:references
+rails g model Place name:string location:references
+
+rails g model Team name:string collective:references
+rails g model HumanTeam team:references human:membership
+
+rails g model Object name:string place:references
+
+rails g model Project name:string source:references
+rails g model Task name:string project:references
+
+
+rails g model Income amount:integer name:string status:string
+rails g model Expense amount:integer name:string status:string
+
+rails g model Book name:string owner:references
+rails g model Movie name:string
+
+rails g model Kingdom name:string
+rails g model Species name:string kingdom:references
+rails g model Animal name:string species:references location:references
+rails g model Plant name:string location:references
+
+rails g model Meeting name:string date:datetime collective:references
+rails g model MeetingAttendee human:references meeting:references status:string
+rails g model MeetingNote meeting:references notes:text
+
+rails g model Document name:string file:string
+
+rails g model Event name:string from_date:datetime to_date:datetime status:string collective:references
+
+rails g model Video file:string collective:references
+rails g model Photo file:string collective:references
+
+rails g model Issue description:text reporter:references collective:references
+
+rails g model Family name:string collective:references
+

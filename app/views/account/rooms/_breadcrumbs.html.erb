@@ -1,0 +1,8 @@
+<% room ||= @room %>
+<% location ||= @location || room&.location %>
+<%= render 'account/locations/breadcrumbs', location: location %>
+<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, location, :rooms] %>
+<% if room&.persisted? %>
+  <%= render 'account/shared/breadcrumb', label: room.label_string, url: [:account, room] %>
+<% end %>
+<%= render 'account/shared/breadcrumbs/actions', only_for: 'rooms' %>

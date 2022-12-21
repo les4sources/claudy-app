@@ -1,0 +1,104 @@
+en:
+  rooms: &rooms
+    label: &label Rooms
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Room
+      create: Create Room
+      edit: Edit Room
+      update: Update Room
+      destroy: Remove Room
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{room_name}? This will also remove any child resources and can't be undone.
+    fields: &fields
+      id:
+        heading: Room ID
+      location_id:
+        heading: Location ID
+      name:
+        _: &name Name
+        label: *name
+        heading: *name
+      description:
+        _: &description Description
+        label: *description
+        heading: *description
+      level:
+        _: &level Level
+        label: *level
+        heading: *level
+      code:
+        _: &code Code
+        label: *code
+        heading: *code
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Rooms"
+      index: "List Rooms"
+      create: "Add a New Room"
+      member_actions: "Actions for an Individual Room"
+      show: "Retrieve a Room"
+      update: "Update a Room"
+      destroy: "Delete a Room"
+      fields: *fields
+    index:
+      section: "%{locations_possessive} Rooms"
+      contexts:
+        location:
+          header: Rooms
+          description: Below is a list of Rooms that have been added for %{location_name}.
+          description_empty: No Rooms have been added for %{location_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{room_name}"
+      header: Room Details
+      description: Below are the details we have for %{room_name}.
+      manage_description: You'll also find options for updating these details or removing %{room_name} from %{location_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Room for %{location_name}"
+      header: New Room Details
+      description: Please provide the details of the new Room you'd like to add to %{location_name}.
+      form: *form
+    edit:
+      section: "%{room_name}"
+      header: Edit Room Details
+      description: You can update the details or settings for %{room_name} below.
+      form: *form
+    notifications:
+      created: Room was successfully created.
+      updated: Room was successfully updated.
+      destroyed: Room was successfully destroyed.
+  account:
+    rooms: *rooms
+  activerecord:
+    attributes:
+      room:
+        name: *name
+        description: *description
+        level: *level
+        code: *code
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

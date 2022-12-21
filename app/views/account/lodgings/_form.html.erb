@@ -1,0 +1,22 @@
+<% cancel_path ||= lodging.persisted? ? [:account, lodging] : [:account, @location, :lodgings] %>
+
+<%= form_with model: lodging, url: (lodging.persisted? ? [:account, lodging] : [:account, @location, :lodgings]), local: true, class: 'form' do |form| %>
+  <%= render "shared/limits/form", form: form, cancel_path: cancel_path do %>
+    <%= render 'account/shared/forms/errors', form: form %>
+
+    <% with_field_settings form: form do %>
+      <%= render 'shared/fields/text_field', method: :name, options: {autofocus: true} %>
+      <%= render 'shared/fields/trix_editor', method: :description %>
+      <%= render 'shared/fields/text_field', method: :summary %>
+      <%= render 'shared/fields/text_field', method: :price_night_cents %>
+      <%= render 'shared/fields/text_field', method: :price_weekend_cents %>
+      <%= render 'shared/fields/options', method: :party_hall_availability %>
+      <%# 🚅 super scaffolding will insert new fields above this line. %>
+    <% end %>
+
+    <div class="buttons">
+      <%= form.submit (form.object.persisted? ? t('.buttons.update') : t('.buttons.create')), class: "button" %>
+      <%= link_to t('global.buttons.cancel'), cancel_path, class: "button-secondary" %>
+    </div>
+  <% end %>
+<% end %>
