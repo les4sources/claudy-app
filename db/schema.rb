@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_21_200524) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_21_202056) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,36 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_21_200524) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.bigint "person_id", null: false
+    t.bigint "lodging_id"
+    t.date "from_date"
+    t.date "to_date"
+    t.string "status"
+    t.integer "adults"
+    t.integer "children"
+    t.string "payment_status"
+    t.string "payment_method"
+    t.boolean "bedsheets", default: false
+    t.boolean "towels", default: false
+    t.text "notes"
+    t.integer "shown_price_cents"
+    t.integer "price_cents"
+    t.string "invoice_status"
+    t.string "contract_status"
+    t.string "checkin_time"
+    t.string "options"
+    t.text "comments"
+    t.string "selected_tier"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_bookings_on_location_id"
+    t.index ["lodging_id"], name: "index_bookings_on_lodging_id"
+    t.index ["person_id"], name: "index_bookings_on_person_id"
   end
 
   create_table "integrations_stripe_installations", force: :cascade do |t|
@@ -383,6 +413,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_21_200524) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "locations"
+  add_foreign_key "bookings", "lodgings"
+  add_foreign_key "bookings", "people"
   add_foreign_key "integrations_stripe_installations", "oauth_stripe_accounts"
   add_foreign_key "integrations_stripe_installations", "teams"
   add_foreign_key "invitations", "teams"

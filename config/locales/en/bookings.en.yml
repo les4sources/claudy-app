@@ -1,0 +1,223 @@
+en:
+  bookings: &bookings
+    label: &label Bookings
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Booking
+      create: Create Booking
+      edit: Edit Booking
+      update: Update Booking
+      destroy: Remove Booking
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Es-tu certain de vouloir supprimer cette réservation?
+    fields: &fields
+      id:
+        heading: Booking ID
+      location_id:
+        heading: Location ID
+      person_id: &person
+        _: &person_id Person
+        label: *person_id
+        heading: *person_id
+        placeholder: Select
+      person: *person
+      lodging_id: &lodging
+        _: &lodging_id Lodging
+        label: *lodging_id
+        heading: *lodging_id
+        placeholder: None
+      lodging: *lodging
+      from_date:
+        _: &from_date From Date
+        label: *from_date
+        heading: *from_date
+      to_date:
+        _: &to_date To Date
+        label: *to_date
+        heading: *to_date
+      status:
+        _: &status Status
+        label: *status
+        heading: *status
+        options:
+          pending: En attente
+          confirmed: Confirmée
+          canceled: Annulée
+      adults:
+        _: &adults Adults
+        label: *adults
+        heading: *adults
+      children:
+        _: &children Children
+        label: *children
+        heading: *children
+      checkin_time:
+        _: &checkin_time Checkin Time
+        label: *checkin_time
+        heading: *checkin_time
+      selected_tier:
+        _: &selected_tier Tarif sélectionné
+        label: *selected_tier
+        heading: *selected_tier
+        options:
+          solidaire: Solidaire
+          neutre: Neutre
+          soutien: Soutien
+      payment_status:
+        _: &payment_status Payment Status
+        label: *payment_status
+        heading: *payment_status
+        options:
+          pending: En attente de paiement
+          partially_paid: Partiellement payée
+          paid: Payée
+      payment_method:
+        _: &payment_method Payment Method
+        label: *payment_method
+        heading: *payment_method
+        options:
+          cash: En liquide
+          bank_transfer: Par virement bancaire
+      bedsheets:
+        _: &bedsheets Bedsheets
+        label: *bedsheets
+        heading: *bedsheets
+        options:
+          yes: "Oui"
+          no: "Non"
+      towels:
+        _: &towels Towels
+        label: *towels
+        heading: *towels
+        options:
+          yes: "Oui"
+          no: "Non"
+      shown_price_cents:
+        _: &shown_price_cents Show Price Cents
+        label: *shown_price_cents
+        heading: *shown_price_cents
+      price_cents:
+        _: &price_cents Price Cents
+        label: *price_cents
+        heading: *price_cents
+      invoice_status:
+        _: &invoice_status Invoice Status
+        label: *invoice_status
+        heading: *invoice_status
+        options:
+          not_requested: Pas demandée
+          requested: Demandée
+          provided: Envoyée
+      contract_status:
+        _: &contract_status Contract Status
+        label: *contract_status
+        heading: *contract_status
+        options:
+          not_required: Pas nécessaire
+          required: A envoyer
+          sent: Envoyé
+          accepted: Accepté
+      options:
+        _: &options Options
+        label: *options
+        heading: *options
+        options:
+          bread: Pain
+          discgolf: Disc-golf
+          babysitting: Babysitting
+          partyhall: Salle
+      comments:
+        _: &comments Comments
+        label: *comments
+        heading: *comments
+      notes:
+        _: &notes Notes
+        label: *notes
+        heading: *notes
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Bookings"
+      index: "List Bookings"
+      create: "Add a New Booking"
+      member_actions: "Actions for an Individual Booking"
+      show: "Retrieve a Booking"
+      update: "Update a Booking"
+      destroy: "Delete a Booking"
+      fields: *fields
+    index:
+      section: "%{locations_possessive} Bookings"
+      contexts:
+        location:
+          header: Bookings
+          description: Below is a list of Bookings that have been added for %{location_name}.
+          description_empty: No Bookings have been added for %{location_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{booking_name}"
+      header: Booking Details
+      description: Below are the details we have for %{booking_name}.
+      manage_description: You'll also find options for updating these details or removing %{booking_name} from %{location_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Booking for %{location_name}"
+      header: New Booking Details
+      description: Please provide the details of the new Booking you'd like to add to %{location_name}.
+      form: *form
+    edit:
+      section: "%{booking_name}"
+      header: Edit Booking Details
+      description: You can update the details or settings for %{booking_name} below.
+      form: *form
+    notifications:
+      created: Booking was successfully created.
+      updated: Booking was successfully updated.
+      destroyed: Booking was successfully destroyed.
+  account:
+    bookings: *bookings
+  activerecord:
+    attributes:
+      booking:
+        person_id: *person_id
+        lodging_id: *lodging_id
+        from_date: *from_date
+        to_date: *to_date
+        status: *status
+        adults: *adults
+        children: *children
+        checkin_time: *checkin_time
+        selected_tier: *selected_tier
+        payment_status: *payment_status
+        payment_method: *payment_method
+        bedsheets: *bedsheets
+        towels: *towels
+        shown_price_cents: *shown_price_cents
+        price_cents: *price_cents
+        invoice_status: *invoice_status
+        contract_status: *contract_status
+        options: *options
+        comments: *comments
+        notes: *notes
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

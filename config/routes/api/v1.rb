@@ -34,6 +34,7 @@ shallow do
       resources :locations do
         resources :lodgings
         resources :rooms
+        resources :bookings
       end
 
       resources :people

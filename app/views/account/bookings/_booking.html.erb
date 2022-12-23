@@ -1,0 +1,39 @@
+<% location = @location || @location %>
+<% context ||= location %>
+<% collection ||= :bookings %>
+<% hide_actions ||= false %>
+<% hide_back ||= false %>
+
+<% with_attribute_settings object: booking do %>
+  <tr data-id="<%= booking.id %>">
+    <%= render "shared/tables/checkbox", object: booking %>
+    <td><%= render 'shared/attributes/belongs_to', attribute: :person, url: [:account, booking] %></td>
+    <td><%= render 'shared/attributes/belongs_to', attribute: :lodging %></td>
+    <td><%= render 'shared/attributes/date', attribute: :from_date %></td>
+    <td><%= render 'shared/attributes/date', attribute: :to_date %></td>
+    <td><%= render 'shared/attributes/option', attribute: :status %></td>
+    <td><%= render 'shared/attributes/text', attribute: :adults %></td>
+    <td><%= render 'shared/attributes/text', attribute: :children %></td>
+    <td><%= render 'shared/attributes/option', attribute: :selected_tier %></td>
+    <td><%= render 'shared/attributes/option', attribute: :payment_status %></td>
+    <td class="text-center"><%= render 'shared/attributes/option', attribute: :bedsheets %></td>
+    <td class="text-center"><%= render 'shared/attributes/option', attribute: :towels %></td>
+    <td><%= render 'shared/attributes/text', attribute: :price_cents %></td>
+    <td><%= render 'shared/attributes/option', attribute: :invoice_status %></td>
+    <td><%= render 'shared/attributes/option', attribute: :contract_status %></td>
+    <td><%= render 'shared/attributes/option', attribute: :options %></td>
+    <%# 🚅 super scaffolding will insert new fields above this line. %>
+    <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
+    <td class="buttons">
+      <% unless hide_actions %>
+        <% if can? :edit, booking %>
+          <%= link_to t('.buttons.shorthand.edit'), [:edit, :account, booking], class: 'button-secondary button-smaller' %>
+        <% end %>
+        <% if can? :destroy, booking %>
+          <%= button_to t('.buttons.shorthand.destroy'), [:account, booking], method: :delete, data: { confirm: t('.buttons.confirmations.destroy', model_locales(booking)) }, class: 'button-secondary button-smaller' %>
+        <% end %>
+        <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

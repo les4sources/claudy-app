@@ -1,0 +1,78 @@
+<% bookings = bookings.accessible_by(current_ability) %>
+<% location = @location || @location %>
+<% context ||= location %>
+<% collection ||= :bookings %>
+<% hide_actions ||= false %>
+<% hide_back ||= false %>
+
+<% pagy ||= nil %>
+<% pagy, bookings = pagy(bookings, page_param: :bookings_page) unless pagy %>
+
+<%= action_model_select_controller do %>
+  <% updates_for context, collection do %>
+    <%= render 'account/shared/box', pagy: pagy do |p| %>
+      <% p.content_for :title, t(".contexts.#{context.class.name.underscore}.header") %>
+      <% p.content_for :description do %>
+        <%= t(".contexts.#{context.class.name.underscore}.description#{"_empty" unless bookings.any?}") %>
+        <%= render "shared/limits/index", model: bookings.model %>
+      <% end %>
+
+      <% p.content_for :table do %>
+        <% if bookings.any? %>
+          <table class="table">
+            <thead>
+              <tr>
+                <%= render "shared/tables/select_all" %>
+                <th><%= t('.fields.person.heading') %></th>
+                <th><%= t('.fields.lodging.heading') %></th>
+                <th><%= t('.fields.from_date.heading') %></th>
+                <th><%= t('.fields.to_date.heading') %></th>
+                <th><%= t('.fields.status.heading') %></th>
+                <th><%= t('.fields.adults.heading') %></th>
+                <th><%= t('.fields.children.heading') %></th>
+                <th><%= t('.fields.selected_tier.heading') %></th>
+                <th><%= t('.fields.payment_status.heading') %></th>
+                <th  class="text-center"><%= t('.fields.bedsheets.heading') %></th>
+                <th  class="text-center"><%= t('.fields.towels.heading') %></th>
+                <th><%= t('.fields.price_cents.heading') %></th>
+                <th><%= t('.fields.invoice_status.heading') %></th>
+                <th><%= t('.fields.contract_status.heading') %></th>
+                <th><%= t('.fields.options.heading') %></th>
+                <%# 🚅 super scaffolding will insert new field headers above this line. %>
+                <th><%= t('.fields.created_at.heading') %></th>
+                <th class="text-right"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% bookings.each do |booking| %>
+                <%= render 'account/bookings/booking', booking: booking %>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      <% end %>
+
+      <% p.content_for :actions do %>
+        <% unless hide_actions %>
+          <% if context == location %>
+            <% if can? :create, Booking.new(location: location) %>
+              <%= link_to t('.buttons.new'), [:new, :account, location, :booking], class: "#{first_button_primary(:booking)} new" %>
+            <% end %>
+          <% end %>
+
+          <%# 🚅 super scaffolding will insert new targets one parent action model buttons above this line. %>
+          <%# 🚅 super scaffolding will insert new bulk action model buttons above this line. %>
+          <%= render "shared/bulk_action_select" %>
+
+          <% unless hide_back %>
+            <%= link_to t('global.buttons.back'), [:account, context], class: "#{first_button_primary(:booking)} back" %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% p.content_for :raw_footer do %>
+        <%# 🚅 super scaffolding will insert new action model index views above this line. %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

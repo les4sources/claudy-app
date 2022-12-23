@@ -1,7 +1,7 @@
 class CreateBookings < ActiveRecord::Migration[7.0]
   def change
     create_table :bookings do |t|
-      t.references :team, null: false, foreign_key: true
+      t.references :location, null: false, foreign_key: true
       t.references :person, null: false, foreign_key: true
       t.references :lodging, null: true, foreign_key: true
       t.date :from_date
@@ -11,8 +11,8 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.integer :children
       t.string :payment_status
       t.string :payment_method
-      t.boolean :bedsheets
-      t.boolean :towels
+      t.boolean :bedsheets, default: false
+      t.boolean :towels, default: false
       t.text :notes
       t.integer :shown_price_cents
       t.integer :price_cents

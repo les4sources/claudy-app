@@ -1,0 +1,38 @@
+<% cancel_path ||= booking.persisted? ? [:account, booking] : [:account, @location, :bookings] %>
+
+<%= form_with model: booking, url: (booking.persisted? ? [:account, booking] : [:account, @location, :bookings]), local: true, class: 'form' do |form| %>
+  <%= render "shared/limits/form", form: form, cancel_path: cancel_path do %>
+    <%= render 'account/shared/forms/errors', form: form %>
+
+    <% with_field_settings form: form do %>
+      <%= render 'shared/fields/super_select', method: :person_id, options: {autofocus: true}, html_options: {autofocus: true},
+        choices: @booking.valid_people.map { |person| [person.label_string, person.id] } %>
+      <%= render 'shared/fields/super_select', method: :lodging_id, options: {}, html_options: {},
+        choices: @booking.valid_lodgings.map { |lodging| [lodging.label_string, lodging.id] } %>
+      <%= render 'shared/fields/date_field', method: :from_date %>
+      <%= render 'shared/fields/date_field', method: :to_date %>
+      <%= render 'shared/fields/buttons', method: :status %>
+      <%= render 'shared/fields/text_field', method: :adults %>
+      <%= render 'shared/fields/text_field', method: :children %>
+      <%= render 'shared/fields/text_field', method: :checkin_time %>
+      <%= render 'shared/fields/buttons', method: :selected_tier %>
+      <%= render 'shared/fields/buttons', method: :payment_status %>
+      <%= render 'shared/fields/buttons', method: :payment_method %>
+      <%= render 'shared/fields/options', method: :bedsheets %>
+      <%= render 'shared/fields/options', method: :towels %>
+      <%= render 'shared/fields/text_field', method: :shown_price_cents %>
+      <%= render 'shared/fields/text_field', method: :price_cents %>
+      <%= render 'shared/fields/buttons', method: :invoice_status %>
+      <%= render 'shared/fields/buttons', method: :contract_status %>
+      <%= render 'shared/fields/options', method: :options, multiple: true %>
+      <%= render 'shared/fields/text_area', method: :comments %>
+      <%= render 'shared/fields/trix_editor', method: :notes %>
+      <%# 🚅 super scaffolding will insert new fields above this line. %>
+    <% end %>
+
+    <div class="buttons">
+      <%= form.submit (form.object.persisted? ? t('.buttons.update') : t('.buttons.create')), class: "button" %>
+      <%= link_to t('global.buttons.cancel'), cancel_path, class: "button-secondary" %>
+    </div>
+  <% end %>
+<% end %>
