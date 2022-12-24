@@ -174,4 +174,10 @@ gem "sidekiq"
 # You can add any Ruby gems you need below. By keeping them separate from our gems above, you'll avoid the likelihood
 # that you run into a merge conflict in the future.
 
+gem "draper"
+gem "money-rails", "~>1.12"
+gem "simple_calendar", "~> 2.4"
+gem "slim"
+gem "view_component"
+
 # 🚅 super scaffolding will insert new oauth providers above this line.

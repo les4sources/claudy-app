@@ -27,8 +27,9 @@ rails g model Booking location:references person:references lodging:references f
 bin/super-scaffold crud Booking Location,Team person_id:super_select{class_name=Person} lodging_id:super_select{class_name=Lodging} from_date:date_field to_date:date_field status:buttons adults:text_field children:text_field checkin_time:text_field selected_tier:buttons payment_status:buttons payment_method:buttons bedsheets:boolean towels:boolean shown_price_cents:text_field price_cents:text_field invoice_status:buttons contract_status:buttons options:options comments:text_area notes:trix_editor 
 
 
+# Reservations
 rails g model Reservation booking:references room:references date:date status:string
-
+bin/super-scaffold crud Reservation Location,Team booking_id:super_select{class_name=Booking} room_id:super_select{class_name=Room} date:date_field status:buttons
 
 
 rails g model Human firstname:string lastname:string email:string phone:string team:references

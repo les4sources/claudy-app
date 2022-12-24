@@ -22,4 +22,19 @@ class Lodging < ApplicationRecord
   # 🚅 add delegations above.
 
   # 🚅 add methods above.
+  def available_on?(date)
+    # none of the lodging rooms has a confirmed reservation
+    true
+    # Reservation
+    #   .includes(:booking)
+    #   .where(
+    #     date: date,
+    #     room: rooms.pluck(:id),
+    #     booking: { status: "confirmed" }
+    #   ).none?
+  end
+
+  def form_label
+    "#{name} (#{summary})"
+  end
 end

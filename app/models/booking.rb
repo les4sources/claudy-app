@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   # 🚅 add concerns above.
 
+  attr_accessor :booking_type # lodging || rooms
   # 🚅 add attribute accessors above.
 
   belongs_to :location

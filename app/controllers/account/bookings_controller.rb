@@ -4,6 +4,7 @@ class Account::BookingsController < Account::ApplicationController
   # GET /account/locations/:location_id/bookings
   # GET /account/locations/:location_id/bookings.json
   def index
+    set_dates
     delegate_json_to_api
   end
 
@@ -69,5 +70,13 @@ class Account::BookingsController < Account::ApplicationController
     assign_date(strong_params, :from_date)
     assign_date(strong_params, :to_date)
     # 🚅 super scaffolding will insert processing for new fields above this line.
+  end
+
+  def set_dates
+    # get the date from params if there is one - for display AND to limit our query
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @first = @date.beginning_of_month.beginning_of_day - 7.days
+    @last = @date.end_of_month.end_of_day + 7.days
+    # @dates = (@date.beginning_of_month..@date.end_of_month).map(&:to_date)
   end
 end
