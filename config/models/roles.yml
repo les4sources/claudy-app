@@ -1,5 +1,6 @@
 default:
   models:
+    Reservation: read
     Booking: read
     Person: read
     Room: read
@@ -33,6 +34,7 @@ admin:
     - admin
     - editor
   models:
+    Reservation: manage
     Booking: manage
     Person: manage
     Room: manage

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_21_202056) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_24_224444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -239,6 +239,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_21_202056) do
     t.index ["team_id"], name: "index_people_on_team_id"
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.bigint "booking_id", null: false
+    t.bigint "room_id", null: false
+    t.date "date"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_reservations_on_booking_id"
+    t.index ["location_id"], name: "index_reservations_on_location_id"
+    t.index ["room_id"], name: "index_reservations_on_room_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.bigint "location_id", null: false
     t.string "name"
@@ -434,6 +447,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_21_202056) do
   add_foreign_key "oauth_applications", "teams"
   add_foreign_key "oauth_stripe_accounts", "users"
   add_foreign_key "people", "teams"
+  add_foreign_key "reservations", "bookings"
+  add_foreign_key "reservations", "locations"
+  add_foreign_key "reservations", "rooms"
   add_foreign_key "rooms", "locations"
   add_foreign_key "scaffolding_absolutely_abstract_creative_concepts", "teams"
   add_foreign_key "scaffolding_absolutely_abstract_creative_concepts_collaborators", "memberships"

@@ -1,0 +1,22 @@
+<% cancel_path ||= reservation.persisted? ? [:account, reservation] : [:account, @location, :reservations] %>
+
+<%= form_with model: reservation, url: (reservation.persisted? ? [:account, reservation] : [:account, @location, :reservations]), local: true, class: 'form' do |form| %>
+  <%= render "shared/limits/form", form: form, cancel_path: cancel_path do %>
+    <%= render 'account/shared/forms/errors', form: form %>
+
+    <% with_field_settings form: form do %>
+      <%= render 'shared/fields/super_select', method: :booking_id, options: {autofocus: true}, html_options: {autofocus: true},
+        choices: @reservation.valid_bookings.map { |booking| [booking.label_string, booking.id] } %>
+      <%= render 'shared/fields/super_select', method: :room_id, options: {}, html_options: {},
+        choices: @reservation.valid_rooms.map { |room| [room.label_string, room.id] } %>
+      <%= render 'shared/fields/date_field', method: :date %>
+      <%= render 'shared/fields/buttons', method: :status %>
+      <%# 🚅 super scaffolding will insert new fields above this line. %>
+    <% end %>
+
+    <div class="buttons">
+      <%= form.submit (form.object.persisted? ? t('.buttons.update') : t('.buttons.create')), class: "button" %>
+      <%= link_to t('global.buttons.cancel'), cancel_path, class: "button-secondary" %>
+    </div>
+  <% end %>
+<% end %>

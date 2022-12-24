@@ -1,7 +1,6 @@
 <%= render 'account/shared/page' do |p| %>
   <% p.content_for :title, t('.section') %>
   <% p.content_for :body do %>
-    <%= render 'calendar' %>
-    <%= render 'index', bookings: @bookings %>
+    <%= render 'index', reservations: @reservations %>
   <% end %>
 <% end %>

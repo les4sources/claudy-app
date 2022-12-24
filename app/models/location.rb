@@ -9,6 +9,7 @@ class Location < ApplicationRecord
   has_many :lodgings, dependent: :destroy
   has_many :rooms, dependent: :destroy
   has_many :bookings, dependent: :destroy
+  has_many :reservations, dependent: :destroy
   # 🚅 add has_many associations above.
 
   # 🚅 add has_one associations above.
