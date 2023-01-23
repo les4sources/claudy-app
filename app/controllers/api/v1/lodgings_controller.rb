@@ -52,6 +52,7 @@ if defined?(Api::V1::ApplicationController)
           :party_hall_availability,
           # 🚅 super scaffolding will insert new fields above this line.
           *permitted_arrays,
+          room_ids: [],
           # 🚅 super scaffolding will insert new arrays above this line.
         )
 

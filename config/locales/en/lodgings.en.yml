@@ -50,6 +50,12 @@ en:
         options:
           yes: "Yes"
           no: "No"
+      room_ids: &rooms
+        _: &room_ids Rooms
+        label: *room_ids
+        heading: *room_ids
+        placeholder: None
+      rooms: *rooms
       # 🚅 super scaffolding will insert new fields above this line.
       created_at:
         _: &created_at Added
@@ -112,6 +118,7 @@ en:
         price_night_cents: *price_night_cents
         price_weekend_cents: *price_weekend_cents
         party_hall_availability: *party_hall_availability
+        room_ids: *room_ids
         # 🚅 super scaffolding will insert new activerecord attributes above this line.
         created_at: *created_at
         updated_at: *updated_at

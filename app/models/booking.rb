@@ -9,12 +9,15 @@ class Booking < ApplicationRecord
   belongs_to :lodging, optional: true
   # 🚅 add belongs_to associations above.
 
+  has_many :reservations
+  has_many :rooms, through: :reservations
   # 🚅 add has_many associations above.
 
   has_one :team, through: :location
   has_rich_text :notes
   # 🚅 add has_one associations above.
 
+  default_scope -> { order(from_date: :desc) }
   # 🚅 add scopes above.
 
   validates :person, scope: true

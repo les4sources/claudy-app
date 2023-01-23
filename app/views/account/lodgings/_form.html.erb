@@ -11,6 +11,8 @@
       <%= render 'shared/fields/text_field', method: :price_night_cents %>
       <%= render 'shared/fields/text_field', method: :price_weekend_cents %>
       <%= render 'shared/fields/options', method: :party_hall_availability %>
+      <%= render 'shared/fields/super_select', method: :room_ids, html_options: {multiple: true},
+        choices: @lodging.valid_rooms.map { |room| [room.label_string, room.id] } %>
       <%# 🚅 super scaffolding will insert new fields above this line. %>
     <% end %>
 

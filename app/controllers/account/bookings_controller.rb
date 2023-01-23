@@ -25,13 +25,14 @@ class Account::BookingsController < Account::ApplicationController
   # POST /account/locations/:location_id/bookings
   # POST /account/locations/:location_id/bookings.json
   def create
+    service = Bookings::CreateService.new
     respond_to do |format|
-      if @booking.save
+      if service.run(params)
         format.html { redirect_to [:account, @location, :bookings], notice: I18n.t("bookings.notifications.created") }
         format.json { render :show, status: :created, location: [:account, @booking] }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
+        format.json { render json: service.booking.errors, status: :unprocessable_entity }
       end
     end
   end

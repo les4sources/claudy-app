@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_24_224444) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_23_171422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -131,6 +131,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_24_224444) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_lodgings_on_location_id"
+  end
+
+  create_table "lodgings_inner_rooms", force: :cascade do |t|
+    t.bigint "lodging_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lodging_id"], name: "index_lodgings_inner_rooms_on_lodging_id"
+    t.index ["room_id"], name: "index_lodgings_inner_rooms_on_room_id"
   end
 
   create_table "memberships", id: :serial, force: :cascade do |t|
@@ -434,6 +443,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_24_224444) do
   add_foreign_key "invitations", "teams"
   add_foreign_key "locations", "teams"
   add_foreign_key "lodgings", "locations"
+  add_foreign_key "lodgings_inner_rooms", "lodgings"
+  add_foreign_key "lodgings_inner_rooms", "rooms"
   add_foreign_key "memberships", "invitations"
   add_foreign_key "memberships", "memberships", column: "added_by_id"
   add_foreign_key "memberships", "oauth_applications", column: "platform_agent_of_id"

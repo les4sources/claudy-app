@@ -6,6 +6,10 @@ class Lodging < ApplicationRecord
   belongs_to :location
   # 🚅 add belongs_to associations above.
 
+  # has_many :lodging_rooms
+  # has_many :rooms, through: :lodging_rooms
+  has_many :inner_rooms, class_name: "Lodgings::InnerRoom", dependent: :destroy
+  has_many :rooms, through: :inner_rooms
   # 🚅 add has_many associations above.
 
   has_one :team, through: :location
@@ -20,6 +24,12 @@ class Lodging < ApplicationRecord
   # 🚅 add callbacks above.
 
   # 🚅 add delegations above.
+
+  def valid_rooms
+    location.rooms
+    # please specify what objects should be considered valid for assigning to `room_ids`.
+    # the resulting code should probably look something like `team.rooms`.
+  end
 
   # 🚅 add methods above.
   def available_on?(date)

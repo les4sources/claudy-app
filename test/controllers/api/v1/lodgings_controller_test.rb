@@ -27,6 +27,7 @@ class Api::V1::LodgingsControllerTest < Api::Test
       assert_equal_or_nil lodging_data['price_night_cents'], lodging.price_night_cents
       assert_equal_or_nil lodging_data['price_weekend_cents'], lodging.price_weekend_cents
       assert_equal_or_nil lodging_data['party_hall_availability'], lodging.party_hall_availability
+      assert_equal_or_nil lodging_data['room_ids'], lodging.room_ids
       # 🚅 super scaffolding will insert new fields above this line.
 
       assert_equal lodging_data["location_id"], lodging.location_id

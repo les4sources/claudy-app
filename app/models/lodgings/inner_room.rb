@@ -1,27 +1,28 @@
-class Room < ApplicationRecord
+class Lodgings::InnerRoom < ApplicationRecord
   # 🚅 add concerns above.
 
   # 🚅 add attribute accessors above.
 
-  belongs_to :location
+  belongs_to :lodging
+  belongs_to :room
   # 🚅 add belongs_to associations above.
 
-  has_many :lodgings_inner_rooms, class_name: "Lodgings::InnerRoom", dependent: :destroy
-  has_many :lodgings, through: :lodgings_inner_rooms
   # 🚅 add has_many associations above.
 
-  has_one :team, through: :location
-  has_rich_text :description
   # 🚅 add has_one associations above.
 
   # 🚅 add scopes above.
 
-  validates :name, presence: true
+  validates :room, scope: true
   # 🚅 add validations above.
 
   # 🚅 add callbacks above.
 
   # 🚅 add delegations above.
+
+  def valid_rooms
+    lodging.valid_rooms
+  end
 
   # 🚅 add methods above.
 end

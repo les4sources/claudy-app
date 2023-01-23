@@ -6,6 +6,7 @@ json.extract! lodging,
   :price_night_cents,
   :price_weekend_cents,
   :party_hall_availability,
+  :room_ids,
   # 🚅 super scaffolding will insert new fields above this line.
   :created_at,
   :updated_at
