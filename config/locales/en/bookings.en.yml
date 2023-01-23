@@ -1,50 +1,50 @@
 en:
   bookings: &bookings
-    label: &label Bookings
+    label: &label Réservations
     breadcrumbs:
       label: *label
     navigation:
       label: *label
       icon: fal fa-puzzle-piece
     buttons: &buttons
-      new: Add New Booking
-      create: Create Booking
-      edit: Edit Booking
-      update: Update Booking
-      destroy: Remove Booking
+      new: Nouvelle réservation
+      create: Enregistrer la réservation
+      edit: Modifier la réservation
+      update: Enregistrer la réservation
+      destroy: Supprimer la réservation
       shorthand:
-        edit: Edit
-        destroy: Delete
+        edit: Modifier
+        destroy: Supprimer
       confirmations:
         # TODO customize for your use-case.
-        destroy: Es-tu certain de vouloir supprimer cette réservation?
+        destroy: Es-tu certain·e de vouloir supprimer cette réservation?
     fields: &fields
       id:
-        heading: Booking ID
+        heading: Réservation ID
       location_id:
-        heading: Location ID
+        heading: Lieu ID
       person_id: &person
-        _: &person_id Person
+        _: &person_id Client
         label: *person_id
         heading: *person_id
-        placeholder: Select
+        placeholder: Sélectionne un client
       person: *person
       lodging_id: &lodging
-        _: &lodging_id Lodging
+        _: &lodging_id Hébergement
         label: *lodging_id
         heading: *lodging_id
-        placeholder: None
+        placeholder: Aucun
       lodging: *lodging
       from_date:
-        _: &from_date From Date
+        _: &from_date Du
         label: *from_date
         heading: *from_date
       to_date:
-        _: &to_date To Date
+        _: &to_date Au
         label: *to_date
         heading: *to_date
       status:
-        _: &status Status
+        _: &status Statut
         label: *status
         heading: *status
         options:
@@ -52,15 +52,15 @@ en:
           confirmed: Confirmée
           canceled: Annulée
       adults:
-        _: &adults Adults
+        _: &adults Adultes
         label: *adults
         heading: *adults
       children:
-        _: &children Children
+        _: &children Enfants
         label: *children
         heading: *children
       checkin_time:
-        _: &checkin_time Checkin Time
+        _: &checkin_time Heure d'arrivée
         label: *checkin_time
         heading: *checkin_time
       selected_tier:
@@ -72,7 +72,7 @@ en:
           neutre: Neutre
           soutien: Soutien
       payment_status:
-        _: &payment_status Payment Status
+        _: &payment_status Statut du paiement
         label: *payment_status
         heading: *payment_status
         options:
@@ -80,36 +80,36 @@ en:
           partially_paid: Partiellement payée
           paid: Payée
       payment_method:
-        _: &payment_method Payment Method
+        _: &payment_method Méthode de paiement
         label: *payment_method
         heading: *payment_method
         options:
           cash: En liquide
           bank_transfer: Par virement bancaire
       bedsheets:
-        _: &bedsheets Bedsheets
+        _: &bedsheets Draps de lit
         label: *bedsheets
         heading: *bedsheets
         options:
           yes: "Oui"
           no: "Non"
       towels:
-        _: &towels Towels
+        _: &towels Essuies
         label: *towels
         heading: *towels
         options:
           yes: "Oui"
           no: "Non"
       shown_price_cents:
-        _: &shown_price_cents Show Price Cents
+        _: &shown_price_cents Montant affiché au client
         label: *shown_price_cents
         heading: *shown_price_cents
       price_cents:
-        _: &price_cents Price Cents
+        _: &price_cents Montant de la réservation
         label: *price_cents
         heading: *price_cents
       invoice_status:
-        _: &invoice_status Invoice Status
+        _: &invoice_status Facturation
         label: *invoice_status
         heading: *invoice_status
         options:
@@ -117,7 +117,7 @@ en:
           requested: Demandée
           provided: Envoyée
       contract_status:
-        _: &contract_status Contract Status
+        _: &contract_status Contrat de location
         label: *contract_status
         heading: *contract_status
         options:
@@ -135,7 +135,7 @@ en:
           babysitting: Babysitting
           partyhall: Salle
       comments:
-        _: &comments Comments
+        _: &comments Commentaires du client
         label: *comments
         heading: *comments
       notes:
@@ -144,11 +144,11 @@ en:
         heading: *notes
       # 🚅 super scaffolding will insert new fields above this line.
       created_at:
-        _: &created_at Added
+        _: &created_at Enregistrée le
         label: *created_at
         heading: *created_at
       updated_at:
-        _: &updated_at Updated
+        _: &updated_at Mise à jour le
         label: *updated_at
         heading: *updated_at
     api:
@@ -161,18 +161,18 @@ en:
       destroy: "Delete a Booking"
       fields: *fields
     index:
-      section: "%{locations_possessive} Bookings"
+      section: "Réservations pour: %{location_name}"
       contexts:
         location:
-          header: Bookings
-          description: Below is a list of Bookings that have been added for %{location_name}.
-          description_empty: No Bookings have been added for %{location_name}.
+          header: Réservations
+          description: Réservations enregistrées pour %{location_name}.
+          description_empty: Aucune réservation enregistrée.
       fields: *fields
       buttons: *buttons
     show:
       section: "%{booking_name}"
-      header: Booking Details
-      description: Below are the details we have for %{booking_name}.
+      header: Détails de la réservation
+      description: Voici les détails enregistrés pour la réservation %{booking_name}.
       manage_description: You'll also find options for updating these details or removing %{booking_name} from %{location_name} entirely.
       fields: *fields
       buttons: *buttons
@@ -180,19 +180,19 @@ en:
       buttons: *buttons
       fields: *fields
     new:
-      section: "New Booking for %{location_name}"
-      header: New Booking Details
+      section: "Nouvelle réservation pour: %{location_name}"
+      header: Détails de cette réservation
       description: Please provide the details of the new Booking you'd like to add to %{location_name}.
       form: *form
     edit:
       section: "%{booking_name}"
-      header: Edit Booking Details
+      header: Détails de la réservation à mettre à jour
       description: You can update the details or settings for %{booking_name} below.
       form: *form
     notifications:
-      created: Booking was successfully created.
-      updated: Booking was successfully updated.
-      destroyed: Booking was successfully destroyed.
+      created: La réservation a été enregistrée avec succès.
+      updated: La réservation a été mise à jour avec succès.
+      destroyed: La réservation a été supprimée.
   account:
     bookings: *bookings
   activerecord:
