@@ -1,0 +1,124 @@
+fr:
+  lodgings: &lodgings
+    label: &label Lodgings
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Lodging
+      create: Create Lodging
+      edit: Edit Lodging
+      update: Update Lodging
+      destroy: Remove Lodging
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{lodging_name}? This will also remove any child resources and can't be undone.
+    fields: &fields
+      id:
+        heading: Lodging ID
+      location_id:
+        heading: Location ID
+      name:
+        _: &name Name
+        label: *name
+        heading: *name
+      description:
+        _: &description Description
+        label: *description
+        heading: *description
+      summary:
+        _: &summary Summary
+        label: *summary
+        heading: *summary
+      price_night_cents:
+        _: &price_night_cents Price Night Cents
+        label: *price_night_cents
+        heading: *price_night_cents
+      price_weekend_cents:
+        _: &price_weekend_cents Price Weekend Cents
+        label: *price_weekend_cents
+        heading: *price_weekend_cents
+      party_hall_availability:
+        _: &party_hall_availability Party Hall Availability
+        label: *party_hall_availability
+        heading: *party_hall_availability
+        options:
+          yes: "Yes"
+          no: "No"
+      room_ids: &rooms
+        _: &room_ids Rooms
+        label: *room_ids
+        heading: *room_ids
+        placeholder: None
+      rooms: *rooms
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Lodgings"
+      index: "List Lodgings"
+      create: "Add a New Lodging"
+      member_actions: "Actions for an Individual Lodging"
+      show: "Retrieve a Lodging"
+      update: "Update a Lodging"
+      destroy: "Delete a Lodging"
+      fields: *fields
+    index:
+      section: "%{locations_possessive} Lodgings"
+      contexts:
+        location:
+          header: Lodgings
+          description: Below is a list of Lodgings that have been added for %{location_name}.
+          description_empty: No Lodgings have been added for %{location_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{lodging_name}"
+      header: Lodging Details
+      description: Below are the details we have for %{lodging_name}.
+      manage_description: You'll also find options for updating these details or removing %{lodging_name} from %{location_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Lodging for %{location_name}"
+      header: New Lodging Details
+      description: Please provide the details of the new Lodging you'd like to add to %{location_name}.
+      form: *form
+    edit:
+      section: "%{lodging_name}"
+      header: Edit Lodging Details
+      description: You can update the details or settings for %{lodging_name} below.
+      form: *form
+    notifications:
+      created: Lodging was successfully created.
+      updated: Lodging was successfully updated.
+      destroyed: Lodging was successfully destroyed.
+  account:
+    lodgings: *lodgings
+  activerecord:
+    attributes:
+      lodging:
+        name: *name
+        description: *description
+        summary: *summary
+        price_night_cents: *price_night_cents
+        price_weekend_cents: *price_weekend_cents
+        party_hall_availability: *party_hall_availability
+        room_ids: *room_ids
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

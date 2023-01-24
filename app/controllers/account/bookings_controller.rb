@@ -31,6 +31,10 @@ class Account::BookingsController < Account::ApplicationController
         format.html { redirect_to [:account, @location, :bookings], notice: I18n.t("bookings.notifications.created") }
         format.json { render :show, status: :created, location: [:account, @booking] }
       else
+        @booking = service.booking
+        byebug
+        # set_error_flash(service.booking, service.error_message)
+
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: service.booking.errors, status: :unprocessable_entity }
       end

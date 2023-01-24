@@ -7,8 +7,12 @@
     <% with_field_settings form: form do %>
       <%= render 'shared/fields/super_select', method: :person_id, options: {autofocus: true}, html_options: {autofocus: true},
         choices: @booking.valid_people.map { |person| [person.label_string, person.id] } %>
-      <%= render 'shared/fields/super_select', method: :lodging_id, options: {}, html_options: {},
+
+      <%= render 'shared/fields/super_select', method: :lodging_id, options: { include_blank: true }, html_options: {},
         choices: @booking.valid_lodgings.map { |lodging| [lodging.label_string, lodging.id] } %>
+      <%= render 'shared/fields/super_select', method: :room_ids, html_options: {multiple: true},
+        choices: @booking.location.rooms.map { |room| [room.label_string, room.id] } %>
+
       <%= render 'shared/fields/date_field', method: :from_date %>
       <%= render 'shared/fields/date_field', method: :to_date %>
       <%= render 'shared/fields/buttons', method: :status %>
@@ -24,7 +28,7 @@
       <%= render 'shared/fields/text_field', method: :price_cents %>
       <%= render 'shared/fields/buttons', method: :invoice_status %>
       <%= render 'shared/fields/buttons', method: :contract_status %>
-      <%= render 'shared/fields/options', method: :options, multiple: true %>
+      <%#= render 'shared/fields/options', method: :options, multiple: true %>
       <%= render 'shared/fields/text_area', method: :comments %>
       <%= render 'shared/fields/trix_editor', method: :notes %>
       <%# 🚅 super scaffolding will insert new fields above this line. %>

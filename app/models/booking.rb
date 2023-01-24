@@ -22,6 +22,8 @@ class Booking < ApplicationRecord
 
   validates :person, scope: true
   validates :lodging, scope: true
+  validates_presence_of :from_date
+  validates_presence_of :to_date
   # 🚅 add validations above.
 
   # 🚅 add callbacks above.

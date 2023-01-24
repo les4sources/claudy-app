@@ -1,0 +1,109 @@
+fr:
+  people: &people
+    label: &label People
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: ti ti-user
+    buttons: &buttons
+      new: Add New Person
+      create: Create Person
+      edit: Edit Person
+      update: Update Person
+      destroy: Remove Person
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{person_name}? This will also remove any child resources and can't be undone.
+    fields: &fields
+      id:
+        heading: Person ID
+      team_id:
+        heading: Team ID
+      firstname:
+        _: &firstname Firstname
+        label: *firstname
+        heading: *firstname
+      lastname:
+        _: &lastname Lastname
+        label: *lastname
+        heading: *lastname
+      phone:
+        _: &phone Phone
+        label: *phone
+        heading: *phone
+      email:
+        _: &email Email
+        label: *email
+        heading: *email
+      notes:
+        _: &notes Notes
+        label: *notes
+        heading: *notes
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for People"
+      index: "List People"
+      create: "Add a New Person"
+      member_actions: "Actions for an Individual Person"
+      show: "Retrieve a Person"
+      update: "Update a Person"
+      destroy: "Delete a Person"
+      fields: *fields
+    index:
+      section: "%{teams_possessive} People"
+      contexts:
+        team:
+          header: People
+          description: Below is a list of People that have been added for %{team_name}.
+          description_empty: No People have been added for %{team_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{person_name}"
+      header: Person Details
+      description: Below are the details we have for %{person_name}.
+      manage_description: You'll also find options for updating these details or removing %{person_name} from %{team_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Person for %{team_name}"
+      header: New Person Details
+      description: Please provide the details of the new Person you'd like to add to %{team_name}.
+      form: *form
+    edit:
+      section: "%{person_name}"
+      header: Edit Person Details
+      description: You can update the details or settings for %{person_name} below.
+      form: *form
+    notifications:
+      created: Person was successfully created.
+      updated: Person was successfully updated.
+      destroyed: Person was successfully destroyed.
+  account:
+    people: *people
+  activerecord:
+    attributes:
+      person:
+        firstname: *firstname
+        lastname: *lastname
+        phone: *phone
+        email: *email
+        notes: *notes
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

@@ -1,0 +1,112 @@
+fr:
+  reservations: &reservations
+    label: &label Reservations
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Reservation
+      create: Create Reservation
+      edit: Edit Reservation
+      update: Update Reservation
+      destroy: Remove Reservation
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{reservation_name}? This will also remove any child resources and can't be undone.
+    fields: &fields
+      id:
+        heading: Reservation ID
+      location_id:
+        heading: Location ID
+      booking_id: &booking
+        _: &booking_id Booking
+        label: *booking_id
+        heading: *booking_id
+        placeholder: Select
+      booking: *booking
+      room_id: &room
+        _: &room_id Room
+        label: *room_id
+        heading: *room_id
+        placeholder: None
+      room: *room
+      date:
+        _: &date Date
+        label: *date
+        heading: *date
+      status:
+        _: &status Status
+        label: *status
+        heading: *status
+        options:
+          one: One
+          two: Two
+          three: Three
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Reservations"
+      index: "List Reservations"
+      create: "Add a New Reservation"
+      member_actions: "Actions for an Individual Reservation"
+      show: "Retrieve a Reservation"
+      update: "Update a Reservation"
+      destroy: "Delete a Reservation"
+      fields: *fields
+    index:
+      section: "%{locations_possessive} Reservations"
+      contexts:
+        location:
+          header: Reservations
+          description: Below is a list of Reservations that have been added for %{location_name}.
+          description_empty: No Reservations have been added for %{location_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{reservation_name}"
+      header: Reservation Details
+      description: Below are the details we have for %{reservation_name}.
+      manage_description: You'll also find options for updating these details or removing %{reservation_name} from %{location_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Reservation for %{location_name}"
+      header: New Reservation Details
+      description: Please provide the details of the new Reservation you'd like to add to %{location_name}.
+      form: *form
+    edit:
+      section: "%{reservation_name}"
+      header: Edit Reservation Details
+      description: You can update the details or settings for %{reservation_name} below.
+      form: *form
+    notifications:
+      created: Reservation was successfully created.
+      updated: Reservation was successfully updated.
+      destroyed: Reservation was successfully destroyed.
+  account:
+    reservations: *reservations
+  activerecord:
+    attributes:
+      reservation:
+        booking_id: *booking_id
+        room_id: *room_id
+        date: *date
+        status: *status
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

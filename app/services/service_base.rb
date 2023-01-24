@@ -16,7 +16,7 @@ class ServiceBase
   def catch_error(context: {})
     block_given? ? yield : false
   rescue => e
-    Sentry.capture_exception(e) if report_errors?
+    Sentry.capture_exception(e) if report_errors? && Rails.env.production?
     Rails.logger.debug("#{e.class.name} - #{e.message}")
     Rails.logger.debug("CONTEXT: #{context}")
     e.backtrace.each { |trace| Rails.logger.debug(trace) }

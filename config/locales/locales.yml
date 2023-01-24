@@ -1,7 +1,7 @@
 locales: &locales
   # This is the canonical list of available languages.
   en: English
-  fr: Français
+  # fr: Français
 
 # The language labels should be the same across all locales.
 en:

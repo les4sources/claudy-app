@@ -1,0 +1,8 @@
+fr:
+  application:
+    name: Claudy
+    owner: Les 4 Sources
+    description: "You can update this description in `config/locales/en/application.en.yml`."
+    keywords: claudy seo keywords
+    support_email: it@les4sources.be
+    key: claudy
